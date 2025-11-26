@@ -2,7 +2,13 @@
 name = "puter-ai-proxy-bot"
 version = "0.1.0"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.122.0",
+    "loguru>=0.7.3",
+    "puter-python-sdk>=0.5.0",
+    "pydantic-settings>=2.12.0",
+    "vkbottle>=4.6.2",
+]
 
 [dependency-groups]
 dev = [
