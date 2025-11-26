@@ -9,6 +9,8 @@ bot_calback = BotCallback(url=settings.CALLBACK_URL)
 bot = Bot(token=settings.VK_TOKEN, callback=bot_calback)
 
 puter_ai = PuterAI(settings.PUTER_USERNAME, settings.PUTER_PASSWORD)
+puter_ai.set_model(settings.PUTER_MODEL)
+
 USERS_HISTORIES: dict[int, list] = {}
 
 

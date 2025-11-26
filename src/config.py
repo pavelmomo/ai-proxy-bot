@@ -18,6 +18,7 @@ class Settings(BaseSettings):
 
     PUTER_USERNAME: str = "user"
     PUTER_PASSWORD: str = "password"
+    PUTER_MODEL: str = "gpt-4.1"
 
     VK_TOKEN: str = "token"
 
