@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     URL_SCHEMA: str = "http"
     DOMAIN: str = "localhost"
     CALLBACK_PATH: str = "/callback"
+    SERVER_NAME: str = "vk_bot"
 
     PUTER_USERNAME: str = "user"
     PUTER_PASSWORD: str = "password"

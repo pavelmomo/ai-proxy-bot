@@ -5,7 +5,7 @@ from vkbottle.callback import BotCallback
 
 from config import settings
 
-bot_calback = BotCallback(url=settings.CALLBACK_URL)
+bot_calback = BotCallback(url=settings.CALLBACK_URL, title=settings.SERVER_NAME)
 bot = Bot(token=settings.VK_TOKEN, callback=bot_calback)
 
 puter_ai = PuterAI(settings.PUTER_USERNAME, settings.PUTER_PASSWORD)
