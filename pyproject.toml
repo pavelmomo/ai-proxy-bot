@@ -1,0 +1,58 @@
+[project]
+name = "puter-ai-proxy-bot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[tool.basedpyright]
+# Пути к файлам, которые проверяются и не проверяются
+include = ["src"]
+exclude = [
+    "**/.*",            # Любые скрытые папки
+    "**/__pycache__",   # Python кэш
+]
+# Настройка проверок
+typeCheckingMode = "standard"
+
+# Настройка версии Python и платформы
+pythonVersion = "3.14"
+pythonPlatform = "Linux"
+
+# Настройка окружений выполнения
+executionEnvironments = [
+    { root = "src" },
+]
+
+[tool.ruff]
+# Пути к файлам, которые не проверяются
+exclude = [
+    "**/.*",            # Любые скрытые папки
+    "**/__pycache__",   # Python кэш
+]
+src = ["src"]
+preview = true
+
+# Как в Black, настройка длины строки и отсупов
+line-length = 88
+indent-width = 4
+
+target-version = "py314" # Используем версию Python 3.14
+
+[tool.ruff.lint]
+# Настройка проверок. Самый строгий вариант - "ALL".
+select = ["E4", "E7", "E9", "F", "I"]
+# Настройка игнорирования проверок.
+ignore = []
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.ruff.format]
+# Как в Black, используем двойные кавычки для строк.
+quote-style = "double"
+# Как в Black, уважаем магические запятые в конце строки.
+skip-magic-trailing-comma = false
+# Как в Black, автоматически определяем подходящее окончание строки.
+line-ending = "auto"
