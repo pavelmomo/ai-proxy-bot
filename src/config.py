@@ -1,3 +1,4 @@
+from logging import config
 from typing import TypedDict
 
 from pydantic import computed_field
@@ -16,6 +17,7 @@ class Settings(BaseSettings):
     DOMAIN: str = "localhost"
     CALLBACK_PATH: str = "/callback"
     SERVER_NAME: str = "vk_bot"
+    LOG_LEVEL: str = "INFO"
 
     PUTER_USERNAME: str = "user"
     PUTER_PASSWORD: str = "password"
@@ -34,3 +36,52 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+LOGGING_CONFIG = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "default_formatter": {
+            "format": "%(asctime)s: %(levelname)s: [%(filename)s] %(message)s",
+            "datefmt": "%d-%m-%y %I:%M:%S",
+        },
+        "access": {
+            "format": "%(asctime)s: %(levelname)s: %(message)s",
+            "datefmt": "%d-%m-%y %I:%M:%S",
+        },
+    },
+    "handlers": {
+        "default_handler": {
+            "class": "logging.StreamHandler",
+            "formatter": "default_formatter",
+            "stream": "ext://sys.stdout",
+        },
+        "access": {
+            "formatter": "access",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+        },
+    },
+    "loggers": {
+        "root": {
+            "handlers": ["default_handler"],
+            "level": settings.LOG_LEVEL,
+        },
+        "uvicorn": {
+            "handlers": ["default_handler"],
+            "level": settings.LOG_LEVEL,
+            "propagate": False,
+        },
+        "uvicorn.access": {
+            "handlers": ["access"],
+            "level": settings.LOG_LEVEL,
+            "propagate": False,
+        },
+        "vkbottle": {
+            "handlers": ["default_handler"],
+            "level": settings.LOG_LEVEL,
+        },
+    },
+}
+
+config.dictConfig(LOGGING_CONFIG)

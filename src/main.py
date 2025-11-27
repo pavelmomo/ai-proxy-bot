@@ -1,10 +1,13 @@
+import logging
 from contextlib import asynccontextmanager
 
+import uvicorn
 from fastapi import BackgroundTasks, FastAPI, Request, Response, status
-from loguru import logger
 
 from bot import bot, puter_ai
-from config import settings
+from config import LOGGING_CONFIG, settings
+
+logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
@@ -37,3 +40,7 @@ async def vk_handler(req: Request, background_task: BackgroundTasks):
         # Running the process in the background, because the logic can be complicated
         background_task.add_task(bot.process_event, data)
     return Response("Ok")
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, log_config=LOGGING_CONFIG)

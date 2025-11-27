@@ -26,4 +26,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 USER nonroot
 
 EXPOSE 8000
-CMD ["fastapi", "run", "main.py", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "main.py"]

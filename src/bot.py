@@ -1,8 +1,8 @@
 from puter import PuterAI, PuterAPIError
 from vkbottle import Bot
 from vkbottle.bot import Message
-from vkbottle.dispatch.rules.base import StickerRule
 from vkbottle.callback import BotCallback
+from vkbottle.dispatch.rules.base import StickerRule
 
 from config import settings
 
