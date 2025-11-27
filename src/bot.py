@@ -14,6 +14,13 @@ puter_ai.set_model(settings.PUTER_MODEL)
 USERS_HISTORIES: dict[int, list] = {}
 
 
+@bot.on.private_message(text="/очистка")
+async def clear_history(message: Message):
+    if message.from_id in USERS_HISTORIES:
+        del USERS_HISTORIES[message.from_id]
+    await message.answer("Выполнена очистка истории")
+
+
 @bot.on.private_message()
 async def proxy_messages(message: Message):
     user_id = message.from_id
@@ -27,10 +34,3 @@ async def proxy_messages(message: Message):
         await message.answer(response)
     except PuterAPIError:
         await message.answer("Ошибка обработки запроса")
-
-
-@bot.on.private_message(text="/очистка")
-async def clear_history(message: Message):
-    if message.from_id in USERS_HISTORIES:
-        del USERS_HISTORIES[message.from_id]
-    await message.answer("Выполнена очистка истории")
