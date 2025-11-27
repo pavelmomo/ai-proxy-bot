@@ -24,7 +24,7 @@ async def clear_history(message: Message):
 
 @bot.on.private_message(StickerRule())
 async def react_to_sticker(message: Message):
-    await message.answer(sticker_id=79410)
+    await message.answer(message="😊")
 
 
 @bot.on.private_message()
