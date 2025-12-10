@@ -26,4 +26,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 USER nonroot
 
 EXPOSE 8000
-CMD ["/bin/bash", "-c", "python", "main.py"]
+CMD ["python", "main.py"]
