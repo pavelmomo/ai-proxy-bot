@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import BackgroundTasks, FastAPI, Request, Response, status
 
-from bot import bot, puter_ai
+from bot import bot
 from config import LOGGING_CONFIG, settings
 
 logger = logging.getLogger(__name__)
@@ -12,9 +12,6 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):
-    puter_ai.login()
-    logger.info("Login to Puter successful!")
-
     settings.VK_CONFIRMATION_CODE, settings.VK_SECRET_KEY = await bot.setup_webhook()
     logger.info("Setup webhook successful!")
     yield
